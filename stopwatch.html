@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clock</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+        div{
+            height: 50vh;
+            width: 100vw;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3vw;
+
+        }
+        p{
+            color: #fff;
+            font-size: 10vw;
+            padding-top: 4vh;
+            margin-left: 1.5vw;
+            font-family: "Orbitron", serif;
+            font-optical-sizing: auto;
+            font-weight:700;
+            font-style: normal;
+          
+          
+        }
+        
+      
+        .sec, .min, .hour{
+          width: 12vw;
+        }
+        .millisecond{
+          margin-left: 2vw;
+          width: 8vw;
+        }
+       .button{
+        display: flex;
+        height: 5vw;
+       }
+       button{
+        padding: 2vw;
+        font-family: "Orbitron", serif;
+            font-optical-sizing: auto;
+            font-weight:700;
+            font-style: normal;
+            border-radius: 10%;
+            
+            
+       }
+       .footer{
+        height: 35vh;
+        align-items: end;
+       }
+       .footer p{
+        color: #626060;
+            font-size: 1vw;
+            font-family: "Orbitron", serif;
+            font-optical-sizing: auto;
+            font-weight:700;
+            font-style: normal;
+       }
+       
+        
+    </style>
+</head>
+<body>
+    <div>
+      
+      <div class="hour" >
+        <p id="demo">00</p>
+      </div>
+        
+        <p>:</p>
+        <div class="min">
+          
+          <p id="demo1">00</p>
+        </div>
+        
+        <p>:</p>
+        
+        <div class="sec">
+          <p id="demo2">00</p>
+        </div>
+        <p>:</p>
+        <div class="millisecond">
+          <p id="demo3">00</p>
+        </div>
+        
+        
+    </div>
+    <div class="button">
+      <button id="start" >START</button>
+      <button id="stop" >STOP</button>
+      <button id="reset" >RESET</button>
+    </div>
+    <div class="footer"><p>@ powered by AVTAR SINGH <br>avtarsingh5533@gmail.com</p></div>
+    
+    
+
+    <script>
+      let startBtn=document.getElementById('start');
+      let stopBtn=document.getElementById('stop');
+      let resetBtn=document.getElementById('reset');
+
+      let hour = 0;
+      let minute = 0;
+      let second = 0;
+      let count = 0;
+
+startBtn.addEventListener('click', function () {
+    timer = true;
+    stopWatch();
+});
+
+stopBtn.addEventListener('click', function () {
+    timer = false;
+});
+
+resetBtn.addEventListener('click', function () {
+    timer = false;
+    hour = 0;
+    minute = 0;
+    second = 0;
+    count = 0;
+    document.getElementById('demo').innerHTML = "00";
+    document.getElementById('demo1').innerHTML = "00";
+    document.getElementById('demo2').innerHTML = "00";
+    document.getElementById('demo3').innerHTML = "00";
+});
+
+function stopWatch() {
+    if (timer) {
+        count++;
+
+        if (count == 100) {
+            second++;
+            count = 0;
+        }
+
+        if (second == 60) {
+            minute++;
+            second = 0;
+        }
+
+        if (minute == 60) {
+            hour++;
+            minute = 0;
+            second = 0;
+        }
+
+        let hrString = hour;
+        let minString = minute;
+        let secString = second;
+        let countString = count;
+
+        if (hour < 10) {
+            hrString = "0" + hrString;
+        }
+
+        if (minute < 10) {
+            minString = "0" + minString;
+        }
+
+        if (second < 10) {
+            secString = "0" + secString;
+        }
+
+        if (count < 10) {
+            countString = "0" + countString;
+        }
+
+        document.getElementById('demo').innerHTML = hrString;
+        document.getElementById('demo1').innerHTML = minString;
+        document.getElementById('demo2').innerHTML = secString;
+        document.getElementById('demo3').innerHTML = countString;
+        setTimeout(stopWatch, 10);
+    }
+}
+      
+   
+
+    
+    
+    </script>
+</body>
+</html>
